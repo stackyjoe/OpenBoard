@@ -368,6 +368,8 @@ for ((i=0;i<${#tab[@]};i++)); do
       echo -n "libavcodec-ffmpeg56 (>= ${depdVer}) | libavcodec-ffmpeg-extra56 (>= ${depdVer})" >> "$CONTROL_FILE"
     elif [ "${tab[$i]}" == "libavcodec-ffmpeg57" ] || [ "${tab[$i]}" == "libavcodec-ffmpeg-extra57" ]; then
       echo -n "libavcodec-ffmpeg57 (>= ${depdVer}) | libavcodec-ffmpeg-extra57 (>= ${depdVer})" >> "$CONTROL_FILE"
+    elif [ "${tab[$i]}" == "libavcodec57" ] || [ "${tab[$i]}" == "libavcodec-extra57" ]; then
+      echo -n "libavcodec57 (>= ${depdVer}) | libavcodec-extra57 (>= ${depdVer})" >> "$CONTROL_FILE"
     else
       echo -n "${tab[$i]} (>= ${depdVer})" >> "$CONTROL_FILE"
     fi
