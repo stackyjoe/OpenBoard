@@ -89,10 +89,10 @@ initializeVariables()
 
   # gstreamer 0.10 libs are no longer supported starting Ubuntu 18.04 (as gstreamer 1.0 is now available)
   # Set BUNDLE_QT and this one below to true, to run package.sh successfully on these platforms
-  OLD_GSTREAMER_SUPPORT=true
+  OLD_GSTREAMER_SUPPORT=false
 
   # Qt installation path. This may vary across machines
-  QT_PATH="/usr/lib/x86_64-linux-gnu/qt5/5.5/gcc_64"
+  QT_PATH="/usr/lib/x86_64-linux-gnu/qt5/5.9.5/gcc_64"
   QT_PLUGINS_SOURCE_PATH="$QT_PATH/plugins"
   GUI_TRANSLATIONS_DIRECTORY_PATH="$QT_PATH/translations"
   QT_LIBRARY_SOURCE_PATH="$QT_PATH/lib"
@@ -213,7 +213,7 @@ if $BUNDLE_QT; then
     copyQtPlugin platformthemes
     copyQtPlugin position
     copyQtPlugin printsupport
-    copyQtPlugin qtwebengine
+    #copyQtPlugin qtwebengine
     copyQtPlugin sceneparsers
     copyQtPlugin xcbglintegrations
 
@@ -252,9 +252,10 @@ fi
 if $OLD_GSTREAMER_SUPPORT; then
     notifyProgress "Copying libgstreamer libraries (0.10)"
     cp /usr/lib/x86_64-linux-gnu/libgst*-0.10.so* "$QT_LIBRARY_DEST_PATH/"
-    notifyProgress "Copying libicu* libraries"
-    cp $QT_LIBRARY_SOURCE_PATH/libicu* "$QT_LIBRARY_DEST_PATH/"
 fi
+
+notifyProgress "Copying libicu* libraries"
+cp $QT_LIBRARY_SOURCE_PATH/libicu* "$QT_LIBRARY_DEST_PATH/"
 
 notifyProgress "Copying Qt translations"
 mkdir -p $PACKAGE_DIRECTORY/i18n
