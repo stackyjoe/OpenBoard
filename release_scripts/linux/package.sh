@@ -135,12 +135,19 @@ notifyProgress(){
 copyQtLibrary(){
     echo -e "\t $1"
     if ls "$QT_LIBRARY_SOURCE_PATH/$1.so" &> /dev/null; then
-        cp -P $QT_LIBRARY_SOURCE_PATH/$1.so.? "$QT_LIBRARY_DEST_PATH/"
-        cp -P $QT_LIBRARY_SOURCE_PATH/$1.so.?.? "$QT_LIBRARY_DEST_PATH/"
-        cp -P $QT_LIBRARY_SOURCE_PATH/$1.so.?.?.? "$QT_LIBRARY_DEST_PATH/"
+	        cp -P $QT_LIBRARY_SOURCE_PATH/$1.so.? "$QT_LIBRARY_DEST_PATH/"
+	if [ "$1" = "libQt5WebKit" ] || [ "$1" = "libQt5WebKitWidgets" ] ; then
+	        cp -P $QT_LIBRARY_SOURCE_PATH/$1.so.?.???.? "$QT_LIBRARY_DEST_PATH/"
 
-        strip $QT_LIBRARY_DEST_PATH/$1.so.?.?.?
-        chmod 644 $QT_LIBRARY_DEST_PATH/$1.so.?.?.? # 644 = rw-r-r
+	        strip $QT_LIBRARY_DEST_PATH/$1.so.?.???.?
+        	chmod 644 $QT_LIBRARY_DEST_PATH/$1.so.?.???.? # 644 = rw-r-r
+	else
+	        cp -P $QT_LIBRARY_SOURCE_PATH/$1.so.?.? "$QT_LIBRARY_DEST_PATH/"
+	        cp -P $QT_LIBRARY_SOURCE_PATH/$1.so.?.?.? "$QT_LIBRARY_DEST_PATH/"
+
+	        strip $QT_LIBRARY_DEST_PATH/$1.so.?.?.?
+        	chmod 644 $QT_LIBRARY_DEST_PATH/$1.so.?.?.? # 644 = rw-r-r
+	fi
     else
         notifyError "$1 library not found in path: $QT_LIBRARY_SOURCE_PATH"
     fi
