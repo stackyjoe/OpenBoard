@@ -112,6 +112,11 @@ void UBTrapFlashController::text_Changed(const QString &newText)
     QRegExp regExp("[<>:\"/\\\\|?*]");
 #endif
 
+#ifdef Q_OS_FREEBSD // Defined on FreeBSD
+    QString illegalCharList("      < > : \" / \\ | ? * ");
+    QRegExp regExp("[<>:\"/\\\\|?*]");
+#endif
+
 #ifdef Q_OS_LINUX // Defined on X11.
     QString illegalCharList("      < > : \" / \\ | ? * ");
     QRegExp regExp("[<>:\"/\\\\|?*]");

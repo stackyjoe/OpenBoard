@@ -15,7 +15,7 @@ SOURCES      += src/frameworks/UBGeometryUtils.cpp \
                 src/frameworks/UBVersion.cpp \
                 src/frameworks/UBCoreGraphicsScene.cpp \
                 src/frameworks/UBCryptoUtils.cpp \
-                src/frameworks/UBBase32.cpp
+                src/frameworks/UBBase32.cpp 
 
 
 win32 {
@@ -43,3 +43,8 @@ linux-g++-64 {
 
     SOURCES  += src/frameworks/UBPlatformUtils_linux.cpp
 }
+
+freebsd-clang {
+    SOURCES += src/frameworks/UBPlatformUtils_freebsd.cpp
+}
+

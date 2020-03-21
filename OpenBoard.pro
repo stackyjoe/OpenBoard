@@ -441,7 +441,23 @@ linux-g++* {
     system(echo "$$LONG_VERSION" > $$BUILD_DIR/longversion)
     system(echo "$$SVN_VERSION" > $$BUILD_DIR/svnversion)
 }
-
+freebsd-clang* {
+    CONFIG += link_prl
+    LIBS += -lcrypto
+    #LIBS += -lprofiler
+    LIBS += -lX11
+    QMAKE_CFLAGS += -fopenmp
+    QMAKE_CXXFLAGS += -fopenmp
+    QMAKE_LFLAGS += -fopenmp
+    UB_LIBRARY.path = $$DESTDIR
+    UB_I18N.path = $$DESTDIR/i18n
+    UB_ETC.path = $$DESTDIR
+    UB_THIRDPARTY_INTERACTIVE.path = $$DESTDIR/library
+    system(mkdir -p $$BUILD_DIR)
+    system(echo "$$VERSION" > $$BUILD_DIR/version)
+    system(echo "$$LONG_VERSION" > $$BUILD_DIR/longversion)
+    system(echo "$$SVN_VERSION" > $$BUILD_DIR/svnversion)
+}
 RESOURCES += resources/OpenBoard.qrc
 
 # When adding a translation here, also add it in the macx part

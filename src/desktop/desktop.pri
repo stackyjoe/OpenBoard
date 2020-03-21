@@ -20,3 +20,4 @@ macx:OBJECTIVE_SOURCES += src/desktop/UBWindowCapture_mac.mm
 linux-g++:SOURCES += src/desktop/UBWindowCapture_linux.cpp
 linux-g++-32:SOURCES += src/desktop/UBWindowCapture_linux.cpp
 linux-g++-64:SOURCES += src/desktop/UBWindowCapture_linux.cpp
+freebsd-clang:SOURCES += src/desktop/UBWindowCapture_freebsd.cpp
